@@ -7,6 +7,15 @@
     {% for animal in animals %}
 
     <div class="form-control d-flex flex-column">
+
+        {% if animal.image %}
+        <img width="200px" src="{{ vich_uploader_asset(animal.image) }}" alt="">
+        {% else %}
+        <img width="200px" src ="{{ asset("images/no_image.png") }}">
+        {% endif %}
+
+
+
         <h2>{{ animal.name }}</h2>
         <h4>Weight: {{ animal.weight }} kg</h4>
         <span>cat: {{ animal.category.name }}</span>

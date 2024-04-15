@@ -70,4 +70,26 @@ class Image
     {
         return $this->id;
     }
+
+    public function getAnimal(): ?Animal
+    {
+        return $this->animal;
+    }
+
+    public function setAnimal(?Animal $animal): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($animal === null && $this->animal !== null) {
+            $this->animal->setImage(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($animal !== null && $animal->getImage() !== $this) {
+            $animal->setImage($this);
+        }
+
+        $this->animal = $animal;
+
+        return $this;
+    }
 }
