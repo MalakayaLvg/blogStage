@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnimalController!{% endblock %}
+
+{% block body %}
+
+    {% for animal in animals %}
+
+    <div class="form-control d-flex flex-column">
+        <h2>{{ animal.name }}</h2>
+        <h4>Weight: {{ animal.weight }} kg</h4>
+        <span>cat: {{ animal.category.name }}</span>
+        <div>
+            <a class="btn btn-primary" href="{{ path("show_animal",{id:animal.id}) }}">show</a>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% endblock %}

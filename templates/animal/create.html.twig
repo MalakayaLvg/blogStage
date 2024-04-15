@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% form_theme form_animal "bootstrap_5_layout.html.twig" %}
+{% block body %}
+
+{{ form_start(form_animal) }}
+{{ form_row(form_animal.name) }}
+{{ form_row(form_animal.category) }}
+{{ form_row(form_animal.weight) }}
+    <button class="btn btn-success" type="submit">create</button>
+{{ form_end(form_animal) }}
+
+{% endblock %}

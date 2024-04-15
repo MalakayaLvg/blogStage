@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% form_theme comment_form "bootstrap_5_layout.html.twig" %}
+{% block body %}
+
+    <div class="form-control">
+        <h2>{{ animal.name }}</h2>
+        <h4>Weight: {{ animal.weight }} kg</h4>
+        <h5>created by {{ animal.author.email }}</h5>
+        <span>date: {{ animal.createdAt | date("m/d/Y") }}</span>
+        <a class="btn btn-primary" href="{{ path("app_animal") }}">back</a>
+
+        {% if app.user == animal.author %}
+
+        <a class="btn btn-danger" href="{{ path("delete_animal",{id:animal.id}) }}">delete</a>
+        <a class="btn btn-warning" href="{{ path("edit_animal",{id:animal.id}) }}">edit</a>
+
+        {% endif %}
+
+        <a class="btn btn-primary" href="{{ path("animal_image",{id:animal.id}) }}">add image</a>
+
+        {% include 'like/button.html.twig' with { routeName:"app_like", object:article } %}
+
+    </div>
+
+    <hr>
+
+    <div class="form-control">
+        {{ form_start(comment_form, {attr: {action:path("create_comment", {id:animal.id}) }}) }}
+        {{ form_row(comment_form.content, {attr: {placeholder:"your comment"} }) }}
+        <button class="btn btn-success" type="submit">add comment</button>
+        {{ form_end(comment_form) }}
+    </div>
+    {% for comment in animal.comments %}
+        <div class="form-control">
+            <p>{{ comment.content }}</p>
+            <a class="btn btn-danger" href="{{ path("delete_comment",{id:comment.id}) }}">delete</a>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}
