@@ -9,7 +9,7 @@
     <div class="form-control d-flex flex-column">
 
         {% if animal.image %}
-        <img width="200px" src="{{ vich_uploader_asset(animal.image) }}" alt="">
+        <img width="200px" src="{{ vich_uploader_asset(animal.image)|imagine_filter('ma_vignette') }}" alt="">
         {% else %}
         <img width="200px" src ="{{ asset("images/no_image.png") }}">
         {% endif %}
